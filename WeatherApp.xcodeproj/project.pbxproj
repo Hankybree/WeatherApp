@@ -13,6 +13,8 @@
 		EFE6D03223E8B8AB0073E7F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE6D03023E8B8AB0073E7F5 /* Main.storyboard */; };
 		EFE6D03423E8B8AD0073E7F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFE6D03323E8B8AD0073E7F5 /* Assets.xcassets */; };
 		EFE6D03723E8B8AD0073E7F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE6D03523E8B8AD0073E7F5 /* LaunchScreen.storyboard */; };
+		EFE6D04323E9A2170073E7F5 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6D04223E9A2170073E7F5 /* WeatherAPI.swift */; };
+		EFE6D04523EC30D00073E7F5 /* history.city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = EFE6D04423EC30D00073E7F5 /* history.city.list.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EFE6D03323E8B8AD0073E7F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFE6D03623E8B8AD0073E7F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFE6D03823E8B8AD0073E7F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFE6D04223E9A2170073E7F5 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		EFE6D04423EC30D00073E7F5 /* history.city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = history.city.list.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				EFE6D02C23E8B8AB0073E7F5 /* SceneDelegate.swift */,
 				EFE6D02E23E8B8AB0073E7F5 /* ViewController.swift */,
 				EFE6D03023E8B8AB0073E7F5 /* Main.storyboard */,
+				EFE6D04223E9A2170073E7F5 /* WeatherAPI.swift */,
+				EFE6D04423EC30D00073E7F5 /* history.city.list.json */,
 				EFE6D03323E8B8AD0073E7F5 /* Assets.xcassets */,
 				EFE6D03523E8B8AD0073E7F5 /* LaunchScreen.storyboard */,
 				EFE6D03823E8B8AD0073E7F5 /* Info.plist */,
@@ -126,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFE6D03723E8B8AD0073E7F5 /* LaunchScreen.storyboard in Resources */,
+				EFE6D04523EC30D00073E7F5 /* history.city.list.json in Resources */,
 				EFE6D03423E8B8AD0073E7F5 /* Assets.xcassets in Resources */,
 				EFE6D03223E8B8AB0073E7F5 /* Main.storyboard in Resources */,
 			);
@@ -139,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFE6D02F23E8B8AB0073E7F5 /* ViewController.swift in Sources */,
+				EFE6D04323E9A2170073E7F5 /* WeatherAPI.swift in Sources */,
 				EFE6D02B23E8B8AB0073E7F5 /* AppDelegate.swift in Sources */,
 				EFE6D02D23E8B8AB0073E7F5 /* SceneDelegate.swift in Sources */,
 			);
