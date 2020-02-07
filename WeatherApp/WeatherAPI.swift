@@ -18,15 +18,6 @@ struct Temp : Codable {
     let temp: Float
 }
 
-struct CityList {
-    
-    let city: City
-}
-
-struct City {
-    let name: String
-}
-
 struct WeatherAPI {
     
     let baseURL: String = "http://api.openweathermap.org/data/2.5/"
