@@ -10,7 +10,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="6qh-He-qou">
             <objects>
-                <tabBarController id="cRc-eH-0sL" sceneMemberID="viewController">
+                <tabBarController id="cRc-eH-0sL" customClass="TabBarController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Ds-gG-q0n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -144,7 +144,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0Y7-jU-hdP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourite" image="star" catalog="system" selectedImage="star" id="re2-p3-34a"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Favourite" image="star" catalog="system" selectedImage="star" id="re2-p3-34a"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Apf-CH-Peb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gKq-6T-VF6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun" catalog="system" selectedImage="cloud.sun" id="L8v-6j-kSq"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Weather" image="cloud.sun" catalog="system" selectedImage="cloud.sun" id="L8v-6j-kSq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8B-aW-dx5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
