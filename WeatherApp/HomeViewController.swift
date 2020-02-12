@@ -8,24 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     let cityList: [String] = getCityListFromJSON()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var input: UITextField!
-    
     
     @IBAction func getLocation(_ sender: Any) {
         
-        print("Button pressed")
-        
-        let weatherAPI: WeatherAPI = WeatherAPI()
+        /*let weatherAPI: WeatherAPI = WeatherAPI()
         
         let userInput: String? = input.text
         
@@ -37,10 +30,15 @@ class ViewController: UIViewController {
             case .success(let weatherData):
                 
                 DispatchQueue.main.async {
-                    self.label.text = "Temperature in \(weatherData.name) is \(kelvinToCelsiusWithTwoPoints(kelvin: weatherData.main.temp))"
+                    print("Temperature in \(weatherData.name) is \(kelvinToCelsiusWithTwoPoints(kelvin: weatherData.main.temp))")
                 }
             }
-        }
+        }*/
     }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    
 }
 
