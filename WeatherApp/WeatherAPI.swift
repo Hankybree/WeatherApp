@@ -12,10 +12,16 @@ struct WeatherData : Codable {
     
     let main: Temp
     let name: String
+    let weather: [Weather]
 }
 
 struct Temp : Codable {
     let temp: Float
+}
+
+struct Weather : Codable {
+    
+    let icon: String
 }
 
 struct WeatherAPI {
@@ -26,8 +32,6 @@ struct WeatherAPI {
     func getWeatherData(suffix: String, completion: @escaping(Result<WeatherData,Error>) -> Void) {
         
         let urlString: String = baseURL + suffix + apiKey
-        
-        print(urlString)
         
         guard let url: URL = URL(string: urlString) else { return }
         
@@ -62,7 +66,9 @@ struct WeatherAPI {
 
 func kelvinToCelsiusWithTwoPoints(kelvin: Float) -> Float {
     
-    let roundedCelsius: Float = round((kelvin - 273.15) * 100) / 100
+    //let roundedCelsius: Float = round((kelvin - 273.15) * 100) / 100
+    
+    let roundedCelsius: Float = round(kelvin - 273.15)
     
     return roundedCelsius
 }

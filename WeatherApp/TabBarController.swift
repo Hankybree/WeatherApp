@@ -20,8 +20,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        print(currentTab)
-        
         if self.tabBar.selectedItem?.tag == currentTab {
             
             return false

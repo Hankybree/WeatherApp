@@ -49,7 +49,13 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        City.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row]))
+        
+        searchBarCancelButtonClicked(searchBar: searchController.searchBar)
+        navigationController?.popViewController(animated: true)
+    }
     
 }
 
@@ -87,5 +93,21 @@ func getCityListFromJSON() -> [String] {
     }
     
     return [String]()
+}
+
+func replaceSpaceWithPlus(string: String) -> String {
+    
+    let cityName = string.replacingOccurrences(of: " ", with: "+")
+    
+    return cityName
+}
+
+func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    // Stop doing the search stuff
+    // and clear the text in the search bar
+    searchBar.text = ""
+    // Hide the cancel button
+    searchBar.showsCancelButton = false
+    // You could also change the position, frame etc of the searchBar
 }
 
