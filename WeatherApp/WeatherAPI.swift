@@ -9,7 +9,6 @@
 import Foundation
 
 struct WeatherData : Codable {
-    
     let main: Temp
     let name: String
     let weather: [Weather]
@@ -20,7 +19,6 @@ struct Temp : Codable {
 }
 
 struct Weather : Codable {
-    
     let icon: String
 }
 
