@@ -26,11 +26,11 @@
             </objects>
             <point key="canvasLocation" x="-289" y="-750"/>
         </scene>
-        <!--Home-->
+        <!--Weather-->
         <scene sceneID="9BH-WT-b5e">
             <objects>
                 <navigationController id="Di6-Ko-fEm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="z3M-GN-ue2"/>
+                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun" catalog="system" id="z3M-GN-ue2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p3B-Aa-lq4">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,7 +149,7 @@
             </objects>
             <point key="canvasLocation" x="-1188.4057971014495" y="711.83035714285711"/>
         </scene>
-        <!--Favourite-->
+        <!--Favourites-->
         <scene sceneID="Drk-dO-of9">
             <objects>
                 <viewController id="ZRO-EL-PMk" sceneMemberID="viewController">
@@ -168,13 +168,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0Y7-jU-hdP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Favourite" image="star" catalog="system" selectedImage="star" id="re2-p3-34a"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Favourites" image="star" catalog="system" id="re2-p3-34a"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Apf-CH-Peb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-291.304347826087" y="-20.089285714285712"/>
         </scene>
-        <!--Weather-->
+        <!--Statistics-->
         <scene sceneID="3tQ-SW-ont">
             <objects>
                 <viewController id="VbS-jV-kn2" sceneMemberID="viewController">
@@ -193,7 +193,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gKq-6T-VF6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Weather" image="cloud.sun" catalog="system" selectedImage="cloud.sun" id="L8v-6j-kSq"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Statistics" image="chart.bar" catalog="system" id="L8v-6j-kSq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8B-aW-dx5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -242,6 +242,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.bar" catalog="system" width="64" height="44"/>
         <image name="cloud.sun" catalog="system" width="64" height="44"/>
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
