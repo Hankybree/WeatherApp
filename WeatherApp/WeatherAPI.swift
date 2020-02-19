@@ -42,8 +42,6 @@ struct WeatherAPI {
             }
             if let unwrappedData = data {
                 
-                //print("Data recieved: \(String(data: unwrappedData, encoding: String.Encoding.utf8) ?? "No data lol?")")
-                
                 do {
                     let decoder = JSONDecoder()
                     
@@ -56,17 +54,6 @@ struct WeatherAPI {
                 }
             }
         }
-        
         task.resume()
     }
-    
-}
-
-func kelvinToCelsiusWithTwoPoints(kelvin: Float) -> Float {
-    
-    //let roundedCelsius: Float = round((kelvin - 273.15) * 100) / 100
-    
-    let roundedCelsius: Float = round(kelvin - 273.15)
-    
-    return roundedCelsius
 }

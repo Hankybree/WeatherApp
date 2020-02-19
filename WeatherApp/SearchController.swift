@@ -9,28 +9,52 @@
 import Foundation
 import UIKit
 
+struct SearchResult {
+    let name: String
+    var isFavourite: Bool
+}
+
 class SearchController: UIViewController {
     
     @IBOutlet weak var searchTable: UITableView!
     
     let searchController: UISearchController = UISearchController(searchResultsController: nil)
     
+    let cellIdentifier: String = "SearchCell"
+    
     let cities: [String] = getCityListFromJSON()
     
-    var filteredCities: [String] = []
+    var searchResults: [SearchResult] = []
+    
+    var filteredCities: [SearchResult] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for i in 0..<cities.count {
+            
+            if cities[i] != "" {
+                searchResults.append(SearchResult(name: cities[i], isFavourite: false))
+            }
+        }
+        
+        configureSearchTable()
+        configureSearchController()
+    }
+    
+    func configureSearchTable() {
         searchTable.delegate = self
         searchTable.dataSource = self
         
-        searchController.searchResultsUpdater = self
-        
         searchTable.tableHeaderView = searchController.searchBar
-        searchController.obscuresBackgroundDuringPresentation = false
+        
+        searchTable.register(SearchCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
+    func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
 }
 
 extension SearchController: UITableViewDelegate, UITableViewDataSource {
@@ -42,16 +66,22 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchCell
         
-        cell.textLabel?.text = filteredCities[indexPath.row]
+        cell.set(cityName: filteredCities[indexPath.row].name)
+        
+        if filteredCities[indexPath.row].isFavourite {
+            cell.favouriteButton.isSelected = true
+        } else {
+            cell.favouriteButton.isSelected = false
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        City.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row]))
+        CurrentCity.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row].name))
         
         self.searchController.isActive = false
         navigationController?.popViewController(animated: true)
@@ -65,7 +95,7 @@ extension SearchController: UISearchResultsUpdating {
         
         let searchText = searchController.searchBar.text ?? ""
         
-        filteredCities = cities.filter( { $0.lowercased().hasPrefix(searchText.lowercased()) } )
+        filteredCities = searchResults.filter( { $0.name.lowercased().hasPrefix(searchText.lowercased()) })
         
         searchTable.reloadData()
     }

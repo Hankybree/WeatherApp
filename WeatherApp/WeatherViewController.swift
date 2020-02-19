@@ -8,24 +8,21 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-    
-    let cityList: [String] = getCityListFromJSON()
+class WeatherViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var celsiusLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        City.setCityToDisplay(cityName: "London")
+        CurrentCity.setCityToDisplay(cityName: "London")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let cityName = City.getCityToDisplay()
+        let cityName = CurrentCity.getCityToDisplay()
         
         let weatherAPI: WeatherAPI = WeatherAPI()
         
@@ -37,7 +34,6 @@ class HomeViewController: UIViewController {
             case .success(let weatherData):
                 
                 DispatchQueue.main.async {
-                    //print("Temperature in \(weatherData.name) is \(kelvinToCelsiusWithTwoPoints(kelvin: weatherData.main.temp))")
                     print("Temperature in \(weatherData.name) is \(round(weatherData.main.temp))")
                     
                     self.cityLabel.text = weatherData.name
@@ -97,7 +93,7 @@ class HomeViewController: UIViewController {
     }
 }
 
-class City {
+class CurrentCity {
     
     static var cityToDisplay: String?
     
