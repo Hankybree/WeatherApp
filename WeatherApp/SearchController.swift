@@ -24,19 +24,10 @@ class SearchController: UIViewController {
     
     let cities: [String] = getCityListFromJSON()
     
-    var searchResults: [SearchResult] = []
-    
     var filteredCities: [SearchResult] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for i in 0..<cities.count {
-            
-            if cities[i] != "" {
-                searchResults.append(SearchResult(name: cities[i], isFavourite: false))
-            }
-        }
         
         configureSearchTable()
         configureSearchController()
@@ -70,6 +61,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         cell.set(cityName: filteredCities[indexPath.row].name)
         
+        cell.favouriteButton.tag = indexPath.row
+        cell.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed(_:)), for: .touchUpInside)
+        
         if filteredCities[indexPath.row].isFavourite {
             cell.favouriteButton.isSelected = true
         } else {
@@ -81,12 +75,33 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        CurrentCity.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row].name))
+        CityHandler.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row].name))
         
         self.searchController.isActive = false
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func favouriteButtonPressed(_ sender: UIButton) {
+        
+        let chosenCity: SearchResult = filteredCities[sender.tag]
+        
+        if chosenCity.isFavourite {
+            setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: false)
+        } else {
+            setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: true)
+        }
+        
+        searchTable.reloadData()
+    }
+    
+    func setIsFavourite(chosenCity: SearchResult, index: Int, bool: Bool) {
+        for i in 0..<CityHandler.searchResults.count {
+            if chosenCity.name == CityHandler.searchResults[i].name {
+                filteredCities[index].isFavourite = bool
+                CityHandler.searchResults[i].isFavourite = bool
+            }
+        }
+    }
 }
 
 extension SearchController: UISearchResultsUpdating {
@@ -95,10 +110,12 @@ extension SearchController: UISearchResultsUpdating {
         
         let searchText = searchController.searchBar.text ?? ""
         
-        filteredCities = searchResults.filter( { $0.name.lowercased().hasPrefix(searchText.lowercased()) })
+        filteredCities = CityHandler.searchResults.filter( { $0.name.lowercased().hasPrefix(searchText.lowercased()) })
         
         searchTable.reloadData()
     }
+    
+    
 }
 
 func getCityListFromJSON() -> [String] {

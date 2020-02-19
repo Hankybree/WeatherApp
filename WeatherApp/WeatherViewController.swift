@@ -14,15 +14,24 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var celsiusLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     
+    let cities: [String] = getCityListFromJSON()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CurrentCity.setCityToDisplay(cityName: "London")
+        CityHandler.setCityToDisplay(cityName: "London")
+        
+        for i in 0..<cities.count {
+            
+            if cities[i] != "" {
+                CityHandler.searchResults.append(SearchResult(name: cities[i], isFavourite: false))
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let cityName = CurrentCity.getCityToDisplay()
+        let cityName = CityHandler.getCityToDisplay()
         
         let weatherAPI: WeatherAPI = WeatherAPI()
         
@@ -93,7 +102,9 @@ class WeatherViewController: UIViewController {
     }
 }
 
-class CurrentCity {
+class CityHandler {
+    
+    static var searchResults: [SearchResult] = []
     
     static var cityToDisplay: String?
     

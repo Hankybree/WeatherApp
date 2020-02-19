@@ -137,6 +137,9 @@
                                     <segue destination="xUQ-aj-CH9" kind="show" id="lk9-Wq-yee"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="sf:" destination="BYZ-38-t0r" id="gDy-yD-kny"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

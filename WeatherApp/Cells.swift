@@ -44,12 +44,12 @@ class SearchCell: UITableViewCell {
     func setCityLabelConstraints() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        cityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        cityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
     }
     
     func setFavouriteButtonConstraints() {
         favouriteButton.translatesAutoresizingMaskIntoConstraints = false
         favouriteButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        favouriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        favouriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
     }
 }
