@@ -27,8 +27,6 @@ class FavouriteViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        print("Appeared called")
-        
         for i in 0..<CityHandler.searchResults.count {
             
             if CityHandler.searchResults[i].isFavourite {

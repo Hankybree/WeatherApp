@@ -37,8 +37,6 @@ class SearchController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        print("Will disappear")
-        
         self.searchController.dismiss(animated: true) {
             self.cancelSearch()
         }

@@ -43,7 +43,6 @@ class WeatherViewController: UIViewController {
             case .success(let weatherData):
                 
                 DispatchQueue.main.async {
-                    print("Temperature in \(weatherData.name) is \(round(weatherData.main.temp))")
                     
                     self.cityLabel.text = weatherData.name
                     
