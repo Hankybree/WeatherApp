@@ -31,6 +31,17 @@ class SearchController: UIViewController {
         
         configureSearchTable()
         configureSearchController()
+        
+        self.definesPresentationContext = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        print("Will disappear")
+        
+        self.searchController.dismiss(animated: true) {
+            self.cancelSearch()
+        }
     }
     
     func configureSearchTable() {
@@ -77,8 +88,9 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         CityHandler.setCityToDisplay(cityName: replaceSpaceWithPlus(string: filteredCities[indexPath.row].name))
         
-        self.searchController.isActive = false
-        navigationController?.popViewController(animated: true)
+        self.searchController.dismiss(animated: true) {
+            self.cancelSearch()
+        }
     }
     
     @IBAction func favouriteButtonPressed(_ sender: UIButton) {
@@ -115,7 +127,13 @@ extension SearchController: UISearchResultsUpdating {
         searchTable.reloadData()
     }
     
-    
+    func cancelSearch() {
+        
+        self.definesPresentationContext = false
+        
+        self.searchController.isActive = false
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 func getCityListFromJSON() -> [String] {
