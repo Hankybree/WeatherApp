@@ -19,7 +19,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CityHandler.setCityToDisplay(cityName: "London")
+        CityHandler.setCityToDisplay(cityName: "Gothenburg")
         
         for i in 0..<cities.count {
             
@@ -44,11 +44,9 @@ class WeatherViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-                    self.cityLabel.text = weatherData.name
-                    
                     let tempInt: Int = Int(round(weatherData.main.temp))
                     
-                    self.celsiusLabel.text = "\(tempInt) C"
+                    self.cityLabel.text = "\(weatherData.name) \(tempInt)°C"
                     
                     self.setWeatherImage(iconId: weatherData.weather[0].icon)
                 }
