@@ -11,7 +11,6 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var celsiusLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     
     let cities: [String] = getCityListFromJSON()
@@ -21,10 +20,18 @@ class WeatherViewController: UIViewController {
         
         CityHandler.setCityToDisplay(cityName: "Gothenburg")
         
+        loadFavourites()
+        
         for i in 0..<cities.count {
             
             if cities[i] != "" {
                 CityHandler.searchResults.append(SearchResult(name: cities[i], isFavourite: false))
+                
+                for j in 0..<CityHandler.favourites.count {
+                    if cities[i] == CityHandler.favourites[j].name {
+                        CityHandler.searchResults[i - 1].isFavourite = true
+                    }
+                }
             }
         }
     }
@@ -102,6 +109,8 @@ class WeatherViewController: UIViewController {
 class CityHandler {
     
     static var searchResults: [SearchResult] = []
+    
+    static var favourites: [SearchResult] = []
     
     static var cityToDisplay: String?
     

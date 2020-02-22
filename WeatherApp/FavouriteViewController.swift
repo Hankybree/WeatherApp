@@ -12,8 +12,6 @@ class FavouriteViewController: UIViewController {
 
     @IBOutlet weak var favouriteTable: UITableView!
     
-    var favourites: [SearchResult] = []
-    
     let cellIdentifier: String = "SearchCell"
     
     override func viewDidLoad() {
@@ -27,52 +25,41 @@ class FavouriteViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        for i in 0..<CityHandler.searchResults.count {
-            
-            if CityHandler.searchResults[i].isFavourite {
-                
-                if !favourites.contains(where: { ($0.name == CityHandler.searchResults[i].name) }) {
-                    
-                    favourites.append(SearchResult(name: CityHandler.searchResults[i].name, isFavourite: CityHandler.searchResults[i].isFavourite))
-                }
-            }
-        }
-        
         favouriteTable.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveFavourites()
     }
 }
 
 extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favourites.count
+        CityHandler.favourites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchCell
         
-        cell.set(cityName: favourites[indexPath.row].name)
+        cell.set(cityName: CityHandler.favourites[indexPath.row].name)
         
         cell.favouriteButton.tag = indexPath.row
         cell.favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed(_:)), for: .touchUpInside)
         
-        if favourites[indexPath.row].isFavourite {
-            cell.favouriteButton.isSelected = true
-        } else {
-            cell.favouriteButton.isSelected = false
-        }
+        cell.favouriteButton.isSelected = true
         
         return cell
     }
     
     @IBAction func favouriteButtonPressed(_ sender: UIButton) {
         
-        let chosenCity: SearchResult = favourites[sender.tag]
+        let chosenCity: SearchResult = CityHandler.favourites[sender.tag]
         
         if chosenCity.isFavourite {
             setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: false)
-            favourites.remove(at: sender.tag)
+            CityHandler.favourites.remove(at: sender.tag)
         } else {
             setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: true)
         }
@@ -83,9 +70,37 @@ extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     func setIsFavourite(chosenCity: SearchResult, index: Int, bool: Bool) {
         for i in 0..<CityHandler.searchResults.count {
             if chosenCity.name == CityHandler.searchResults[i].name {
-                favourites[index].isFavourite = bool
+                CityHandler.favourites[index].isFavourite = bool
                 CityHandler.searchResults[i].isFavourite = bool
             }
+        }
+    }
+}
+
+func saveFavourites() {
+    
+    let settings = UserDefaults.standard
+    
+    var saveableFavourites: [Dictionary<String, Any>] = []
+    
+    for i in 0..<CityHandler.favourites.count {
+        
+        saveableFavourites.append(CityHandler.favourites[i].toDict())
+    }
+    
+    settings.set(saveableFavourites, forKey: "favourites")
+}
+
+func loadFavourites() {
+    
+    let settings = UserDefaults.standard
+    
+    if settings.array(forKey: "favourites") != nil {
+        let loadableFavourites: [Dictionary<String, Any>] = settings.array(forKey: "favourites") as! [Dictionary<String, Any>]
+        
+        for i in 0..<loadableFavourites.count {
+            
+            CityHandler.favourites.append(SearchResult(name: loadableFavourites[i]["name"] as! String, isFavourite: (loadableFavourites[i]["isFavourite"] != nil)))
         }
     }
 }

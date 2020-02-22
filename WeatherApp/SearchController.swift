@@ -12,6 +12,13 @@ import UIKit
 struct SearchResult {
     let name: String
     var isFavourite: Bool
+    
+    func toDict() -> Dictionary<String, Any> {
+        
+        let dict = ["name": self.name, "isFavourite": self.isFavourite] as [String : Any]
+        
+        return dict
+    }
 }
 
 class SearchController: UIViewController {
@@ -97,9 +104,21 @@ extension SearchController: UITableViewDelegate, UITableViewDataSource {
         
         if chosenCity.isFavourite {
             setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: false)
+            
+            for i in 0..<CityHandler.favourites.count {
+                
+                if chosenCity.name == CityHandler.favourites[i].name {
+                    CityHandler.favourites.remove(at: i)
+                    break
+                }
+            }
         } else {
             setIsFavourite(chosenCity: chosenCity, index: sender.tag, bool: true)
+            
+            CityHandler.favourites.append(chosenCity)
         }
+        
+        saveFavourites()
         
         searchTable.reloadData()
     }
