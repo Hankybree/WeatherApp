@@ -53,6 +53,13 @@ extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        CityHandler.setCityToDisplay(cityName: replaceSpaceWithPlus(string: CityHandler.favourites[indexPath.row].name))
+        
+        tabBarController?.selectedIndex = 0
+    }
+    
     @IBAction func favouriteButtonPressed(_ sender: UIButton) {
         
         let chosenCity: SearchResult = CityHandler.favourites[sender.tag]

@@ -56,6 +56,10 @@ class WeatherViewController: UIViewController {
                     self.cityLabel.text = "\(weatherData.name) \(tempInt)°C"
                     
                     self.setWeatherImage(iconId: weatherData.weather[0].icon)
+                    
+                    self.cityLabel.numberOfLines = 1
+                    self.cityLabel.minimumScaleFactor = 8
+                    self.cityLabel.adjustsFontSizeToFitWidth = true
                 }
             }
         }
